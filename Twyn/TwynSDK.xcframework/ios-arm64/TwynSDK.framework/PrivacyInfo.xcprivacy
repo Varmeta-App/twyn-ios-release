@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>NSPrivacyTracking</key><false/>
+  <key>NSPrivacyTrackingDomains</key><array/>
+
+  <key>NSPrivacyAccessedAPITypes</key>
+  <array>
+    <!--
+      CA92.1 covers reading and writing user defaults that only this app can reach. That is
+      what the SDK does: its defaults live in a private suite inside the host app's own
+      container, nothing another app wrote is read, and nothing written is readable elsewhere.
+
+      Apple also publishes a user-defaults reason for an SDK that merely wraps user defaults
+      on the host app's behalf. It looks applicable here and is not: that reason forbids using
+      the data for the SDK's own purposes or sending it off-device, and this SDK does both —
+      the stored device and install identifiers go into the event envelope that leaves the
+      device. Declaring it would be a false statement in an attestation, not a simpler
+      spelling of the same thing. Do not "simplify" this entry.
+
+      That reason's code is deliberately not written out anywhere in this file, so that
+      scripts/check-required-reason-apis.sh can assert its absence by plain text search
+      without the explanation defeating the check it explains.
+    -->
+    <dict>
+      <key>NSPrivacyAccessedAPIType</key>
+      <string>NSPrivacyAccessedAPICategoryUserDefaults</string>
+      <key>NSPrivacyAccessedAPITypeReasons</key>
+      <array><string>CA92.1</string></array>
+    </dict>
+  </array>
+
+  <!--
+    No file-timestamp category is declared because the SDK performs no file I/O, and no
+    system-boot-time category is declared because the session clock stays on wall-clock time.
+    The boot-time reasons forbid sending derived values off-device, and the session start
+    timestamp is sent — so the clock choice is what keeps that category inapplicable.
+    scripts/check-required-reason-apis.sh fails the build if a source change makes either
+    category applicable while this file still omits it.
+  -->
+
+  <key>NSPrivacyCollectedDataTypes</key>
+  <array>
+    <dict>
+      <key>NSPrivacyCollectedDataType</key>
+      <string>NSPrivacyCollectedDataTypeProductInteraction</string>
+      <key>NSPrivacyCollectedDataTypeLinked</key><true/>
+      <key>NSPrivacyCollectedDataTypeTracking</key><false/>
+      <key>NSPrivacyCollectedDataTypePurposes</key>
+      <array><string>NSPrivacyCollectedDataTypePurposeAnalytics</string></array>
+    </dict>
+    <dict>
+      <key>NSPrivacyCollectedDataType</key>
+      <string>NSPrivacyCollectedDataTypeDeviceID</string>
+      <key>NSPrivacyCollectedDataTypeLinked</key><true/>
+      <key>NSPrivacyCollectedDataTypeTracking</key><false/>
+      <key>NSPrivacyCollectedDataTypePurposes</key>
+      <array><string>NSPrivacyCollectedDataTypePurposeAnalytics</string></array>
+    </dict>
+    <dict>
+      <key>NSPrivacyCollectedDataType</key>
+      <string>NSPrivacyCollectedDataTypeUserID</string>
+      <key>NSPrivacyCollectedDataTypeLinked</key><true/>
+      <key>NSPrivacyCollectedDataTypeTracking</key><false/>
+      <key>NSPrivacyCollectedDataTypePurposes</key>
+      <array><string>NSPrivacyCollectedDataTypePurposeAnalytics</string></array>
+    </dict>
+  </array>
+</dict>
+</plist>
