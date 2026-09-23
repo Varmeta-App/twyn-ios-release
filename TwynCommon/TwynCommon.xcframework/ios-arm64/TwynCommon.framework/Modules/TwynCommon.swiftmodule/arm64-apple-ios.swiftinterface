@@ -1,0 +1,101 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 6.3.1 (swiftlang-6.3.1.1.2 clang-2100.0.123.102)
+// swift-module-flags: -target arm64-apple-ios15.0 -enable-objc-interop -enable-library-evolution -swift-version 6 -O -enable-experimental-feature DebugDescriptionMacro -module-name TwynCommon -package-name twyn_ios_sdk
+// swift-module-flags-ignorable:  -formal-cxx-interoperability-mode=off -interface-compiler-version 6.3.1
+import Swift
+import Twyn
+import _Concurrency
+import _StringProcessing
+import _SwiftConcurrencyShims
+open class TwynBase {
+  public init()
+  open func emit(_ name: Swift.String, _ params: [Swift.String : any TwynSDK.TwynValueConvertible])
+  open func emitScreen(_ name: Swift.String)
+  open func emitOncePerSession(_ name: Swift.String, _ params: [Swift.String : any TwynSDK.TwynValueConvertible])
+  open func emitExperiment(_ experimentId: Swift.String, _ variant: Swift.String)
+  public enum IapProductType : Swift.String, Swift.Sendable, Swift.Hashable, Swift.CaseIterable {
+    case inapp
+    case subs
+    public init?(rawValue: Swift.String)
+    public typealias AllCases = [TwynCommon.TwynBase.IapProductType]
+    public typealias RawValue = Swift.String
+    nonisolated public static var allCases: [TwynCommon.TwynBase.IapProductType] {
+      get
+    }
+    public var rawValue: Swift.String {
+      get
+    }
+  }
+  public func screen(name: Swift.String)
+  public func appOpened(source: Swift.String? = nil, params: [Swift.String : any TwynSDK.TwynValueConvertible] = [:])
+  public func deepLinkOpened(linkId: Swift.String? = nil, source: Swift.String? = nil, params: [Swift.String : any TwynSDK.TwynValueConvertible] = [:])
+  public func tabSelected(tab: Swift.String, params: [Swift.String : any TwynSDK.TwynValueConvertible] = [:])
+  public func modalOpened(name: Swift.String, params: [Swift.String : any TwynSDK.TwynValueConvertible] = [:])
+  public func modalClosed(name: Swift.String, params: [Swift.String : any TwynSDK.TwynValueConvertible] = [:])
+  public func reEngaged(daysSinceLast: Swift.Int? = nil, params: [Swift.String : any TwynSDK.TwynValueConvertible] = [:])
+  public func signUp(method: Swift.String? = nil, params: [Swift.String : any TwynSDK.TwynValueConvertible] = [:])
+  public func login(method: Swift.String? = nil, params: [Swift.String : any TwynSDK.TwynValueConvertible] = [:])
+  public func logout(params: [Swift.String : any TwynSDK.TwynValueConvertible] = [:])
+  public func elementTapped(id: Swift.String, params: [Swift.String : any TwynSDK.TwynValueConvertible] = [:])
+  public func search(resultCount: Swift.Int? = nil, type: Swift.String? = nil, params: [Swift.String : any TwynSDK.TwynValueConvertible] = [:])
+  public func share(contentType: Swift.String, itemId: Swift.String, method: Swift.String? = nil, params: [Swift.String : any TwynSDK.TwynValueConvertible] = [:])
+  public func selectContent(contentType: Swift.String, itemId: Swift.String, params: [Swift.String : any TwynSDK.TwynValueConvertible] = [:])
+  public func selectPromotion(promotionId: Swift.String, slot: Swift.String? = nil, params: [Swift.String : any TwynSDK.TwynValueConvertible] = [:])
+  public func rateApp(rating: Swift.Int, params: [Swift.String : any TwynSDK.TwynValueConvertible] = [:])
+  public func feedbackSubmitted(category: Swift.String, params: [Swift.String : any TwynSDK.TwynValueConvertible] = [:])
+  public func surveyShown(surveyId: Swift.String, params: [Swift.String : any TwynSDK.TwynValueConvertible] = [:])
+  public func surveyCompleted(surveyId: Swift.String, score: Swift.Int? = nil, params: [Swift.String : any TwynSDK.TwynValueConvertible] = [:])
+  public func npsSubmitted(score: Swift.Int, params: [Swift.String : any TwynSDK.TwynValueConvertible] = [:])
+  public func consentGranted(params: [Swift.String : any TwynSDK.TwynValueConvertible] = [:])
+  public func consentWithdrawn(params: [Swift.String : any TwynSDK.TwynValueConvertible] = [:])
+  public func notificationReceived(notificationId: Swift.String, campaignId: Swift.String? = nil, channel: Swift.String? = nil, params: [Swift.String : any TwynSDK.TwynValueConvertible] = [:])
+  public func notificationOpened(notificationId: Swift.String, campaignId: Swift.String? = nil, channel: Swift.String? = nil, params: [Swift.String : any TwynSDK.TwynValueConvertible] = [:])
+  public func notificationSettingChanged(category: Swift.String, enabled: Swift.Bool, params: [Swift.String : any TwynSDK.TwynValueConvertible] = [:])
+  public func settingChanged(key: Swift.String, value: Swift.String, params: [Swift.String : any TwynSDK.TwynValueConvertible] = [:])
+  public func languageChanged(language: Swift.String, params: [Swift.String : any TwynSDK.TwynValueConvertible] = [:])
+  public func errorShown(code: Swift.String, fatal: Swift.Bool = false, params: [Swift.String : any TwynSDK.TwynValueConvertible] = [:])
+  public func experimentViewed(experimentId: Swift.String, variant: Swift.String)
+  public func activationCompleted(milestone: Swift.String, params: [Swift.String : any TwynSDK.TwynValueConvertible] = [:])
+  public func subscriptionRenewed(productId: Swift.String, value: Swift.Double? = nil, currency: Swift.String? = nil, renewalCount: Swift.Int? = nil, source: Swift.String? = nil, params: [Swift.String : any TwynSDK.TwynValueConvertible] = [:])
+  public func subscriptionCancelled(productId: Swift.String, reason: Swift.String? = nil, params: [Swift.String : any TwynSDK.TwynValueConvertible] = [:])
+  public func trialStarted(productId: Swift.String, trialLength: Swift.Int, offerId: Swift.String? = nil, params: [Swift.String : any TwynSDK.TwynValueConvertible] = [:])
+  public func subscriptionExpiredServer(productId: Swift.String, expirationReason: Swift.String? = nil, params: [Swift.String : any TwynSDK.TwynValueConvertible] = [:])
+  public func billingIssue(productId: Swift.String, graceExpiresAt: Swift.Int64? = nil, params: [Swift.String : any TwynSDK.TwynValueConvertible] = [:])
+  public func pltvScored(value: Swift.Double, currency: Swift.String, modelVersion: Swift.String, scoreBand: Swift.String, params: [Swift.String : any TwynSDK.TwynValueConvertible] = [:])
+  public func splashView(params: [Swift.String : any TwynSDK.TwynValueConvertible] = [:])
+  public func splashAdFullView(params: [Swift.String : any TwynSDK.TwynValueConvertible] = [:])
+  public func language1View(params: [Swift.String : any TwynSDK.TwynValueConvertible] = [:])
+  public func clickLanguage(languageCode: Swift.String, params: [Swift.String : any TwynSDK.TwynValueConvertible] = [:])
+  public func language2View(languageCode: Swift.String, params: [Swift.String : any TwynSDK.TwynValueConvertible] = [:])
+  public func language3View(languageCode: Swift.String, params: [Swift.String : any TwynSDK.TwynValueConvertible] = [:])
+  public func language3Done(languageCode: Swift.String, params: [Swift.String : any TwynSDK.TwynValueConvertible] = [:])
+  public func onboardView(id: Swift.Int, params: [Swift.String : any TwynSDK.TwynValueConvertible] = [:])
+  public func onboardNext(id: Swift.Int, params: [Swift.String : any TwynSDK.TwynValueConvertible] = [:])
+  public func onboardStepView(stepId: Swift.Int, params: [Swift.String : any TwynSDK.TwynValueConvertible] = [:])
+  public func onboardStepNext(stepId: Swift.Int, params: [Swift.String : any TwynSDK.TwynValueConvertible] = [:])
+  public func homeView(params: [Swift.String : any TwynSDK.TwynValueConvertible] = [:])
+  public func onboardInterView(params: [Swift.String : any TwynSDK.TwynValueConvertible] = [:])
+  public func onboardInterClose(params: [Swift.String : any TwynSDK.TwynValueConvertible] = [:])
+  public func onboardInterFail(reason: Swift.String? = nil, params: [Swift.String : any TwynSDK.TwynValueConvertible] = [:])
+  public func permissionStepView(permission: Swift.String, params: [Swift.String : any TwynSDK.TwynValueConvertible] = [:])
+  public func permissionStepResult(permission: Swift.String, granted: Swift.Bool, params: [Swift.String : any TwynSDK.TwynValueConvertible] = [:])
+  public func showIap(placement: Swift.String, screenCode: Swift.String? = nil, funnelType: Swift.String? = nil, productId: Swift.String? = nil, basePlanId: Swift.String? = nil, price: Swift.Double? = nil, currency: Swift.String? = nil, offerId: Swift.String? = nil, params: [Swift.String : any TwynSDK.TwynValueConvertible] = [:])
+  public func clickCta(placement: Swift.String, screenCode: Swift.String? = nil, productId: Swift.String? = nil, funnelType: Swift.String? = nil, basePlanId: Swift.String? = nil, params: [Swift.String : any TwynSDK.TwynValueConvertible] = [:])
+  public func closeIap(placement: Swift.String, screenCode: Swift.String? = nil, productId: Swift.String? = nil, funnelType: Swift.String? = nil, params: [Swift.String : any TwynSDK.TwynValueConvertible] = [:])
+  public func clickSubcription(placement: Swift.String, screenCode: Swift.String? = nil, productId: Swift.String? = nil, funnelType: Swift.String? = nil, basePlanId: Swift.String? = nil, price: Swift.Double? = nil, currency: Swift.String? = nil, offerId: Swift.String? = nil, params: [Swift.String : any TwynSDK.TwynValueConvertible] = [:])
+  public func paymentResultIap(success: Swift.Bool, placement: Swift.String, isFreeTrial: Swift.Bool, screenCode: Swift.String? = nil, funnelType: Swift.String? = nil, productId: Swift.String? = nil, reasonFail: Swift.String? = nil, basePlanId: Swift.String? = nil, params: [Swift.String : any TwynSDK.TwynValueConvertible] = [:])
+  public func viewIap(placement: Swift.String, suffixOverride: Swift.String? = nil, params: [Swift.String : any TwynSDK.TwynValueConvertible] = [:])
+  public func purSuccess(placement: Swift.String, suffixOverride: Swift.String? = nil, params: [Swift.String : any TwynSDK.TwynValueConvertible] = [:])
+  public func purchaseCompleted(productId: Swift.String, productType: TwynCommon.TwynBase.IapProductType, isTrial: Swift.Bool = false, placement: Swift.String? = nil, value: Swift.Double? = nil, currency: Swift.String? = nil, transactionId: Swift.String? = nil, basePlanId: Swift.String? = nil, purchaseTokenHash: Swift.String? = nil, params: [Swift.String : any TwynSDK.TwynValueConvertible] = [:])
+  public func subscribeFailed(productId: Swift.String? = nil, reason: Swift.String? = nil, params: [Swift.String : any TwynSDK.TwynValueConvertible] = [:])
+  public func showAdsIaa(adFormat: Swift.String, adPosition: Swift.String, adSource: Swift.String, params: [Swift.String : any TwynSDK.TwynValueConvertible] = [:])
+  public func clickAdsIaa(adFormat: Swift.String, adPosition: Swift.String, adSource: Swift.String, params: [Swift.String : any TwynSDK.TwynValueConvertible] = [:])
+  public func adDeliveryRequested(adFormat: Swift.String, adNetwork: Swift.String, params: [Swift.String : any TwynSDK.TwynValueConvertible] = [:])
+  public func adDeliveryLoaded(adFormat: Swift.String, adNetwork: Swift.String, params: [Swift.String : any TwynSDK.TwynValueConvertible] = [:])
+  public func adDeliveryLoadFailed(adFormat: Swift.String, adNetwork: Swift.String, errorCode: Swift.String, params: [Swift.String : any TwynSDK.TwynValueConvertible] = [:])
+  public static func iapPlacementSuffix(_ placement: Swift.String) -> Swift.String
+  public static let generatedEventNameCount: Swift.Int
+  public static let allRawEventNames: [Swift.String]
+  @objc deinit
+}
+extension TwynCommon.TwynBase.IapProductType : Swift.RawRepresentable {}

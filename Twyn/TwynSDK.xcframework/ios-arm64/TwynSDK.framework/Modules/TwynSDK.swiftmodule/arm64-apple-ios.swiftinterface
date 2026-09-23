@@ -1,0 +1,586 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 6.3.1 (swiftlang-6.3.1.1.2 clang-2100.0.123.102)
+// swift-module-flags: -target arm64-apple-ios15.0 -enable-objc-interop -enable-library-evolution -swift-version 6 -O -enable-experimental-feature DebugDescriptionMacro -module-name TwynSDK -package-name twyn_ios_sdk
+// swift-module-flags-ignorable:  -formal-cxx-interoperability-mode=off -interface-compiler-version 6.3.1
+import Foundation
+import Foundation/*.Bundle*/
+import Foundation/*.ProcessInfo*/
+import Foundation/*.URL*/
+import Swift
+import UIKit
+import UserNotifications
+import _Concurrency
+import _StringProcessing
+import _SwiftConcurrencyShims
+public enum TwynEventGA4Classification : Swift.String, Swift.Sendable, Swift.Hashable, Swift.CaseIterable {
+  case custom
+  case recommended
+  public init?(rawValue: Swift.String)
+  public typealias AllCases = [TwynSDK.TwynEventGA4Classification]
+  public typealias RawValue = Swift.String
+  nonisolated public static var allCases: [TwynSDK.TwynEventGA4Classification] {
+    get
+  }
+  public var rawValue: Swift.String {
+    get
+  }
+}
+public struct TwynEventSpec : Swift.Sendable, Swift.Hashable {
+  public let raw: Swift.String
+  public let wire: Swift.String
+  public let ga4: TwynSDK.TwynEventGA4Classification
+  public let requiredParams: [Swift.String]
+  public init(raw: Swift.String, wire: Swift.String, ga4: TwynSDK.TwynEventGA4Classification, requiredParams: [Swift.String])
+  public static func == (a: TwynSDK.TwynEventSpec, b: TwynSDK.TwynEventSpec) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public enum TwynCatalog {
+  public static let customEventPrefix: Swift.String
+  public static let generatedEventCount: Swift.Int
+  public static let all: [TwynSDK.TwynEventSpec]
+  public static func spec(forRaw raw: Swift.String) -> TwynSDK.TwynEventSpec?
+}
+public enum TwynParamType : Swift.String, Swift.Sendable, Swift.Hashable, Swift.CaseIterable {
+  case bool
+  case double
+  case int
+  case items
+  case string
+  public init?(rawValue: Swift.String)
+  public typealias AllCases = [TwynSDK.TwynParamType]
+  public typealias RawValue = Swift.String
+  nonisolated public static var allCases: [TwynSDK.TwynParamType] {
+    get
+  }
+  public var rawValue: Swift.String {
+    get
+  }
+}
+public struct TwynParamSpec : Swift.Sendable, Swift.Hashable {
+  public let key: Swift.String
+  public let type: TwynSDK.TwynParamType
+  public let required: Swift.Bool
+  public init(key: Swift.String, type: TwynSDK.TwynParamType, required: Swift.Bool)
+  public static func == (a: TwynSDK.TwynParamSpec, b: TwynSDK.TwynParamSpec) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public enum TwynParamSchema {
+  public static let generatedEventCount: Swift.Int
+  public static let paramSpecsByWire: [Swift.String : [TwynSDK.TwynParamSpec]]
+}
+public enum TwynParams {
+  public static let action: Swift.String
+  public static let adPlatform: Swift.String
+  public static let adUnitName: Swift.String
+  public static let amount: Swift.String
+  public static let balance: Swift.String
+  public static let campaign: Swift.String
+  public static let categoryId: Swift.String
+  public static let channel: Swift.String
+  public static let contentType: Swift.String
+  public static let currency: Swift.String
+  public static let enabled: Swift.String
+  public static let errorCode: Swift.String
+  public static let filterType: Swift.String
+  public static let filterValue: Swift.String
+  public static let itemCount: Swift.String
+  public static let itemId: Swift.String
+  public static let impressionId: Swift.String
+  public static let itemName: Swift.String
+  public static let items: Swift.String
+  public static let language: Swift.String
+  public static let listId: Swift.String
+  public static let mediaSource: Swift.String
+  public static let method: Swift.String
+  public static let milestone: Swift.String
+  public static let placement: Swift.String
+  public static let position: Swift.String
+  public static let price: Swift.String
+  public static let productId: Swift.String
+  public static let promotionId: Swift.String
+  public static let quantity: Swift.String
+  public static let rating: Swift.String
+  public static let reason: Swift.String
+  public static let recipientId: Swift.String
+  public static let resultCount: Swift.String
+  public static let rewardId: Swift.String
+  public static let rewardType: Swift.String
+  public static let scope: Swift.String
+  public static let score: Swift.String
+  public static let screenClass: Swift.String
+  public static let screenName: Swift.String
+  public static let searchTerm: Swift.String
+  public static let slot: Swift.String
+  public static let sortBy: Swift.String
+  public static let source: Swift.String
+  public static let step: Swift.String
+  public static let tab: Swift.String
+  public static let value: Swift.String
+  public static let adFormat: Swift.String
+  public static let adNetwork: Swift.String
+  public static let adPosition: Swift.String
+  public static let adSource: Swift.String
+  public static let funnelType: Swift.String
+  public static let granted: Swift.String
+  public static let isFreetrial: Swift.String
+  public static let languageCode: Swift.String
+  public static let reasonFail: Swift.String
+  public static let screenCode: Swift.String
+  public static let subscriptionStatus: Swift.String
+  public static let baseplanId: Swift.String
+  public static let campaignId: Swift.String
+  public static let category: Swift.String
+  public static let creativeSlot: Swift.String
+  public static let daysSinceLast: Swift.String
+  public static let experimentId: Swift.String
+  public static let expirationReason: Swift.String
+  public static let fatal: Swift.String
+  public static let graceExpiresAt: Swift.String
+  public static let isTrial: Swift.String
+  public static let linkId: Swift.String
+  public static let modelVersion: Swift.String
+  public static let notificationId: Swift.String
+  public static let objectRef: Swift.String
+  public static let precisionType: Swift.String
+  public static let productType: Swift.String
+  public static let purchaseTokenHash: Swift.String
+  public static let renewalCount: Swift.String
+  public static let scoreBand: Swift.String
+  public static let settingKey: Swift.String
+  public static let settingValue: Swift.String
+  public static let stepId: Swift.String
+  public static let surveyId: Swift.String
+  public static let transactionId: Swift.String
+  public static let trialLength: Swift.String
+  public static let type: Swift.String
+  public static let variant: Swift.String
+  public static let achievementId: Swift.String
+  public static let attempt: Swift.String
+  public static let avatarId: Swift.String
+  public static let bannerId: Swift.String
+  public static let boosterId: Swift.String
+  public static let boxId: Swift.String
+  public static let character: Swift.String
+  public static let checkpointId: Swift.String
+  public static let coopSessionId: Swift.String
+  public static let costAmount: Swift.String
+  public static let dayIndex: Swift.String
+  public static let difficulty: Swift.String
+  public static let duration: Swift.String
+  public static let energyType: Swift.String
+  public static let eventType: Swift.String
+  public static let format: Swift.String
+  public static let friendUserId: Swift.String
+  public static let giftType: Swift.String
+  public static let groupId: Swift.String
+  public static let guildId: Swift.String
+  public static let inventoryType: Swift.String
+  public static let inviterId: Swift.String
+  public static let leaderboardId: Swift.String
+  public static let level: Swift.String
+  public static let levelId: Swift.String
+  public static let levelName: Swift.String
+  public static let liveEventId: Swift.String
+  public static let matchId: Swift.String
+  public static let matched: Swift.String
+  public static let messageLength: Swift.String
+  public static let milestoneId: Swift.String
+  public static let mode: Swift.String
+  public static let offerId: Swift.String
+  public static let offerType: Swift.String
+  public static let partySize: Swift.String
+  public static let passId: Swift.String
+  public static let pityCounter: Swift.String
+  public static let powerUpId: Swift.String
+  public static let progress: Swift.String
+  public static let progressPct: Swift.String
+  public static let pullCount: Swift.String
+  public static let questId: Swift.String
+  public static let questType: Swift.String
+  public static let rank: Swift.String
+  public static let rankDelta: Swift.String
+  public static let rankId: Swift.String
+  public static let rarity: Swift.String
+  public static let recipeId: Swift.String
+  public static let resourceId: Swift.String
+  public static let result: Swift.String
+  public static let rewardAmount: Swift.String
+  public static let seasonId: Swift.String
+  public static let senderId: Swift.String
+  public static let sink: Swift.String
+  public static let stars: Swift.String
+  public static let storeSection: Swift.String
+  public static let streakCount: Swift.String
+  public static let streakType: Swift.String
+  public static let success: Swift.String
+  public static let target: Swift.String
+  public static let targetUserId: Swift.String
+  public static let tier: Swift.String
+  public static let tierIndex: Swift.String
+  public static let toLevel: Swift.String
+  public static let track: Swift.String
+  public static let tutorialId: Swift.String
+  public static let virtualCurrencyAmount: Swift.String
+  public static let virtualCurrencyName: Swift.String
+  public static let waitTimeSec: Swift.String
+  public static let watchedPct: Swift.String
+  public static let wheelId: Swift.String
+  public static let addressId: Swift.String
+  public static let addressType: Swift.String
+  public static let cartId: Swift.String
+  public static let checkoutId: Swift.String
+  public static let completenessPct: Swift.String
+  public static let coupon: Swift.String
+  public static let couponId: Swift.String
+  public static let creativeId: Swift.String
+  public static let discount: Swift.String
+  public static let giftWrap: Swift.String
+  public static let hasPhoto: Swift.String
+  public static let imageIndex: Swift.String
+  public static let inStock: Swift.String
+  public static let newPrice: Swift.String
+  public static let newTierId: Swift.String
+  public static let oldTierId: Swift.String
+  public static let optionType: Swift.String
+  public static let orderId: Swift.String
+  public static let page: Swift.String
+  public static let parentCategoryId: Swift.String
+  public static let paymentMethodId: Swift.String
+  public static let paymentType: Swift.String
+  public static let points: Swift.String
+  public static let previousQuantity: Swift.String
+  public static let programId: Swift.String
+  public static let questionId: Swift.String
+  public static let reasonCode: Swift.String
+  public static let recommendationType: Swift.String
+  public static let referralId: Swift.String
+  public static let refundAmount: Swift.String
+  public static let regionId: Swift.String
+  public static let resultsCount: Swift.String
+  public static let reviewCount: Swift.String
+  public static let reviewId: Swift.String
+  public static let shipmentStatus: Swift.String
+  public static let shipping: Swift.String
+  public static let shippingAmount: Swift.String
+  public static let shippingTier: Swift.String
+  public static let sizeId: Swift.String
+  public static let sourceOrderId: Swift.String
+  public static let stepName: Swift.String
+  public static let storeId: Swift.String
+  public static let targetPrice: Swift.String
+  public static let tax: Swift.String
+  public static let tierId: Swift.String
+  public static let topicId: Swift.String
+  public static let variantId: Swift.String
+  public static let vote: Swift.String
+  public static let wishlistId: Swift.String
+  public static let adId: Swift.String
+  public static let adType: Swift.String
+  public static let algorithm: Swift.String
+  public static let broadcastId: Swift.String
+  public static let bufferMs: Swift.String
+  public static let channelId: Swift.String
+  public static let codeId: Swift.String
+  public static let coinAmount: Swift.String
+  public static let coinValue: Swift.String
+  public static let commentId: Swift.String
+  public static let componentType: Swift.String
+  public static let contentId: Swift.String
+  public static let creatorId: Swift.String
+  public static let destination: Swift.String
+  public static let device: Swift.String
+  public static let direction: Swift.String
+  public static let draftId: Swift.String
+  public static let durationMin: Swift.String
+  public static let durationMs: Swift.String
+  public static let dwellMs: Swift.String
+  public static let editType: Swift.String
+  public static let effectId: Swift.String
+  public static let effectType: Swift.String
+  public static let entryPoint: Swift.String
+  public static let feedType: Swift.String
+  public static let fieldChanged: Swift.String
+  public static let free: Swift.String
+  public static let fromProductId: Swift.String
+  public static let gatedContentId: Swift.String
+  public static let genre: Swift.String
+  public static let giftId: Swift.String
+  public static let isKids: Swift.String
+  public static let length: Swift.String
+  public static let livestream: Swift.String
+  public static let manual: Swift.String
+  public static let monetizationType: Swift.String
+  public static let optionId: Swift.String
+  public static let packId: Swift.String
+  public static let packageId: Swift.String
+  public static let parentCommentId: Swift.String
+  public static let paywallId: Swift.String
+  public static let peakViewers: Swift.String
+  public static let percentComplete: Swift.String
+  public static let playbackId: Swift.String
+  public static let playlistId: Swift.String
+  public static let pollId: Swift.String
+  public static let positionMs: Swift.String
+  public static let preferenceType: Swift.String
+  public static let preferenceValue: Swift.String
+  public static let previewType: Swift.String
+  public static let profileId: Swift.String
+  public static let purchaseType: Swift.String
+  public static let quality: Swift.String
+  public static let railId: Swift.String
+  public static let railType: Swift.String
+  public static let ratingType: Swift.String
+  public static let ratingValue: Swift.String
+  public static let reactionType: Swift.String
+  public static let recommendationId: Swift.String
+  public static let reportedUserId: Swift.String
+  public static let resumePositionMs: Swift.String
+  public static let rewardGranted: Swift.String
+  public static let scheduledAt: Swift.String
+  public static let section: Swift.String
+  public static let seekPositionMs: Swift.String
+  public static let seriesId: Swift.String
+  public static let sizeBytes: Swift.String
+  public static let skipAfterMs: Swift.String
+  public static let speed: Swift.String
+  public static let toProductId: Swift.String
+  public static let totalLengthMs: Swift.String
+  public static let uploadId: Swift.String
+  public static let visibility: Swift.String
+  public static let watchedMs: Swift.String
+  public static let wifiOnly: Swift.String
+  public static let generatedKeyCount: Swift.Int
+  public static let allKeys: [Swift.String]
+}
+public enum TwynUserPropertyType : Swift.String, Swift.Sendable, Swift.Hashable, Swift.CaseIterable {
+  case bool
+  case string
+  public init?(rawValue: Swift.String)
+  public typealias AllCases = [TwynSDK.TwynUserPropertyType]
+  public typealias RawValue = Swift.String
+  nonisolated public static var allCases: [TwynSDK.TwynUserPropertyType] {
+    get
+  }
+  public var rawValue: Swift.String {
+    get
+  }
+}
+public struct TwynUserPropertySpec : Swift.Sendable, Swift.Hashable {
+  public let key: Swift.String
+  public let type: TwynSDK.TwynUserPropertyType
+  public let source: Swift.String
+  public init(key: Swift.String, type: TwynSDK.TwynUserPropertyType, source: Swift.String)
+  public static func == (a: TwynSDK.TwynUserPropertySpec, b: TwynSDK.TwynUserPropertySpec) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public enum TwynUserPropertyCatalog {
+  public static let generatedPropertyCount: Swift.Int
+  public static let all: [TwynSDK.TwynUserPropertySpec]
+  public static func spec(forKey key: Swift.String) -> TwynSDK.TwynUserPropertySpec?
+}
+public enum TwynVersion {
+  public static let sdkName: Swift.String
+  public static let sdkVersion: Swift.String
+}
+public enum Twyn {
+  public static func configure(_ config: TwynSDK.TwynConfig)
+  public static func track(_ name: Swift.String, _ params: [Swift.String : any TwynSDK.TwynValueConvertible] = [:])
+  public static func screen(_ name: Swift.String)
+  public static func trackOncePerSession(_ name: Swift.String, _ params: [Swift.String : any TwynSDK.TwynValueConvertible] = [:])
+  public static func trackExperiment(_ experimentId: Swift.String, _ variant: Swift.String)
+  public static func setAccountId(_ accountId: Swift.String)
+  public static func clearAccountId()
+  public static func setAcquisition(channel: Swift.String?, mediaSource: Swift.String?, campaign: Swift.String?)
+  public static func setSubscriptionSnapshot(_ status: TwynSDK.TwynSubscriptionStatus)
+  public static func setPayerTier(_ tier: TwynSDK.TwynPayerTier)
+  public static func setConsent(_ consent: TwynSDK.TwynConsent)
+  public static func setDefaultConsent(_ consent: TwynSDK.TwynConsent)
+  public static func trackPermission(type: Swift.String, granted: Swift.Bool)
+  public static func flush()
+  public static func diagnostics() -> TwynSDK.TwynDiagnostics
+}
+extension TwynSDK.TwynCatalog {
+  public static let ga4Recommended: Swift.Set<Swift.String>
+  public static let byRaw: [Swift.String : TwynSDK.TwynEventSpec]
+  public static let requiredParamsByWire: [Swift.String : Swift.Set<Swift.String>]
+}
+public struct TwynConfig : Swift.Sendable {
+  public let writeKey: Swift.String
+  public let providers: [TwynSDK.TwynProviderConfig]
+  public let sessionBackgroundTimeoutSeconds: Swift.Int
+  public let emitScreenViewToFirebase: Swift.Bool
+  public static let defaultSessionBackgroundTimeoutSeconds: Swift.Int
+  public init(writeKey: Swift.String, providers: [TwynSDK.TwynProviderConfig] = [], sessionBackgroundTimeoutSeconds: Swift.Int = TwynConfig.defaultSessionBackgroundTimeoutSeconds, emitScreenViewToFirebase: Swift.Bool = true)
+}
+public struct TwynConsent : Swift.Sendable, Swift.Hashable {
+  public let analytics: Swift.Bool
+  public let personalization: Swift.Bool
+  public let marketing: Swift.Bool
+  public init(analytics: Swift.Bool, personalization: Swift.Bool, marketing: Swift.Bool)
+  public static func == (a: TwynSDK.TwynConsent, b: TwynSDK.TwynConsent) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public struct TwynDiagnostics : Swift.Sendable, Swift.Hashable {
+  public let invalidEventNameDropped: Swift.Int64
+  public let reservedEventNameDropped: Swift.Int64
+  public let invalidParamNameDropped: Swift.Int64
+  public let unsupportedParamTypeDropped: Swift.Int64
+  public let collectionParamDropped: Swift.Int64
+  public let paramsDroppedEvents: Swift.Int64
+  public let paramValueTruncatedEvents: Swift.Int64
+  public let malformedItemsDropped: Swift.Int64
+  public let itemsTruncatedEvents: Swift.Int64
+  public let itemParamsDropped: Swift.Int64
+  public let consentDeniedDropped: Swift.Int64
+  public let preInitDropped: Swift.Int64
+  public let userPropertyConsentDropped: Swift.Int64
+  public let userPropertyInvalidNameDropped: Swift.Int64
+  public let userPropertyValueTruncated: Swift.Int64
+  public let userPropertyBudgetDropped: Swift.Int64
+  public let paramSchemaViolations: [Swift.String : Swift.Int64]
+  public init(invalidEventNameDropped: Swift.Int64, reservedEventNameDropped: Swift.Int64, invalidParamNameDropped: Swift.Int64, unsupportedParamTypeDropped: Swift.Int64, collectionParamDropped: Swift.Int64, paramsDroppedEvents: Swift.Int64, paramValueTruncatedEvents: Swift.Int64, malformedItemsDropped: Swift.Int64, itemsTruncatedEvents: Swift.Int64, itemParamsDropped: Swift.Int64, consentDeniedDropped: Swift.Int64, preInitDropped: Swift.Int64, userPropertyConsentDropped: Swift.Int64, userPropertyInvalidNameDropped: Swift.Int64, userPropertyValueTruncated: Swift.Int64, userPropertyBudgetDropped: Swift.Int64, paramSchemaViolations: [Swift.String : Swift.Int64])
+  public var isClean: Swift.Bool {
+    get
+  }
+  public static func == (a: TwynSDK.TwynDiagnostics, b: TwynSDK.TwynDiagnostics) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public enum TwynEventNames {
+  public static let frbPurchase: Swift.String
+  public static let frbInAppPurchase: Swift.String
+  public static let frbSubscription: Swift.String
+  public static let frbTrial: Swift.String
+  public static let frbPaid: Swift.String
+  public static let purSuccessPrefix: Swift.String
+  public static let screenView: Swift.String
+}
+public enum TwynEventNaming {
+  public static func wireName(_ raw: Swift.String) -> Swift.String
+}
+public protocol TwynFirebaseAdapting : Swift.Sendable {
+  func logEvent(name: Swift.String, params: [Swift.String : TwynSDK.TwynValue])
+  func setUserProperty(name: Swift.String, value: Swift.String?)
+  func setUserId(_ userId: Swift.String?)
+  func setConsent(_ consent: TwynSDK.TwynConsent)
+}
+public enum TwynFirebaseParams {
+  public static func normalize(_ params: [Swift.String : TwynSDK.TwynValue]) -> [Swift.String : TwynSDK.TwynValue]
+}
+public enum TwynSubscriptionStatus : Swift.String, Swift.Sendable, Swift.Hashable, Swift.CaseIterable {
+  case none
+  case trial
+  case active
+  case grace
+  case onHold
+  case cancelled
+  case expired
+  public var wireValue: Swift.String {
+    get
+  }
+  public init?(rawValue: Swift.String)
+  public typealias AllCases = [TwynSDK.TwynSubscriptionStatus]
+  public typealias RawValue = Swift.String
+  nonisolated public static var allCases: [TwynSDK.TwynSubscriptionStatus] {
+    get
+  }
+  public var rawValue: Swift.String {
+    get
+  }
+}
+public enum TwynPayerTier : Swift.String, Swift.Sendable, Swift.Hashable, Swift.CaseIterable {
+  case nonPayer
+  case low
+  case mid
+  case high
+  case whale
+  public var wireValue: Swift.String {
+    get
+  }
+  public init?(rawValue: Swift.String)
+  public typealias AllCases = [TwynSDK.TwynPayerTier]
+  public typealias RawValue = Swift.String
+  nonisolated public static var allCases: [TwynSDK.TwynPayerTier] {
+    get
+  }
+  public var rawValue: Swift.String {
+    get
+  }
+}
+public enum TwynProviderConfig : Swift.Sendable {
+  case firebase(adapter: any TwynSDK.TwynFirebaseAdapting)
+}
+extension TwynSDK.TwynUserPropertyCatalog {
+  public static let accountId: Swift.String
+  public static let acquisitionChannel: Swift.String
+  public static let deviceClass: Swift.String
+  public static let firstAppVersion: Swift.String
+  public static let isPayer: Swift.String
+  public static let notificationPermission: Swift.String
+  public static let payerTier: Swift.String
+  public static let subscriptionStatus: Swift.String
+}
+@frozen public enum TwynValue : Swift.Sendable, Swift.Hashable {
+  case string(Swift.String)
+  case int(Swift.Int64)
+  case double(Swift.Double)
+  case bool(Swift.Bool)
+  case items([[Swift.String : TwynSDK.TwynValue]])
+  public static func == (a: TwynSDK.TwynValue, b: TwynSDK.TwynValue) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public protocol TwynValueConvertible : Swift.Sendable {
+  var twynValue: TwynSDK.TwynValue { get }
+}
+extension Swift.String : TwynSDK.TwynValueConvertible {
+  public var twynValue: TwynSDK.TwynValue {
+    get
+  }
+}
+extension Swift.Int : TwynSDK.TwynValueConvertible {
+  public var twynValue: TwynSDK.TwynValue {
+    get
+  }
+}
+extension Swift.Int64 : TwynSDK.TwynValueConvertible {
+  public var twynValue: TwynSDK.TwynValue {
+    get
+  }
+}
+extension Swift.Double : TwynSDK.TwynValueConvertible {
+  public var twynValue: TwynSDK.TwynValue {
+    get
+  }
+}
+extension Swift.Bool : TwynSDK.TwynValueConvertible {
+  public var twynValue: TwynSDK.TwynValue {
+    get
+  }
+}
+extension Swift.Array : TwynSDK.TwynValueConvertible where Element == [Swift.String : any TwynSDK.TwynValueConvertible] {
+  public var twynValue: TwynSDK.TwynValue {
+    get
+  }
+}
+extension TwynSDK.TwynEventGA4Classification : Swift.RawRepresentable {}
+extension TwynSDK.TwynParamType : Swift.RawRepresentable {}
+extension TwynSDK.TwynUserPropertyType : Swift.RawRepresentable {}
+extension TwynSDK.TwynSubscriptionStatus : Swift.RawRepresentable {}
+extension TwynSDK.TwynPayerTier : Swift.RawRepresentable {}
